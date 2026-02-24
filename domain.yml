@@ -1,0 +1,59 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - check_leave_balance
+  - payroll_query
+  - benefits_query
+  - nlu_fallback
+
+entities:
+  - leave_type
+
+slots:
+  employee_id:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: leave_form
+            requested_slot: employee_id
+
+  leave_type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: leave_type
+        conditions:
+          - active_loop: leave_form
+            requested_slot: leave_type
+responses:
+  utter_greet:
+    - text: "Hello! I am your HR assistant. I can help with leave, salary, and benefits queries."
+
+  utter_goodbye:
+    - text: "Goodbye! Have a great day."
+
+  utter_ask_employee_id:
+    - text: "Please provide your employee ID."
+
+  utter_ask_leave_type:
+    - text: "Please specify leave type (casual, sick, or earned)."
+
+  utter_fallback:
+    - text: "Sorry, I can assist only with HR-related queries."
+
+actions:
+  - validate_leave_form
+  - action_submit_leave_form
+  - action_payroll
+  - action_benefits
+
+forms:
+  leave_form:
+    required_slots:
+      - employee_id
+      - leave_type

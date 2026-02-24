@@ -1,0 +1,35 @@
+version: "3.1"
+
+nlu:
+
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+
+- intent: check_leave_balance
+  examples: |
+    - how many leaves do I have
+    - leave balance
+    - check leave
+    - how many [sick](leave_type) leaves do I have
+    - check [casual](leave_type) leave
+    - what is my [earned](leave_type) leave balance
+
+- intent: payroll_query
+  examples: |
+    - what is my salary
+    - show my payroll
+    - payslip
+
+- intent: benefits_query
+  examples: |
+    - what are company benefits
+    - health benefits
+    - insurance details

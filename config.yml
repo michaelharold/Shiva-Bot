@@ -1,0 +1,18 @@
+version: "3.1"
+
+language: en
+
+pipeline:
+- name: WhitespaceTokenizer
+- name: RegexFeaturizer
+- name: CountVectorsFeaturizer
+- name: DIETClassifier
+  epochs: 100
+  constrain_similarities: true
+- name: EntitySynonymMapper
+
+policies:
+- name: RulePolicy
+- name: TEDPolicy
+  epochs: 100
+assistant_id: 20260224-115638-slow-resistivity
